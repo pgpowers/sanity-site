@@ -6,7 +6,7 @@ import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
 export const query = graphql`
-  query IndexPageQuery {
+  query CommissionsPageQuery {
     site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
       title
       description
@@ -15,7 +15,7 @@ export const query = graphql`
   }
 `
 
-const IndexPage = props => {
+const CommissionsPage = props => {
   const {data, errors} = props
 
   if (errors) {
@@ -38,4 +38,4 @@ const IndexPage = props => {
   )
 }
 
-export default IndexPage
+export default CommissionsPage

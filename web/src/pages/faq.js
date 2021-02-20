@@ -1,21 +1,24 @@
 import React from 'react'
 import {graphql} from 'gatsby'
+import ReactMarkdown from 'react-markdown';
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
 export const query = graphql`
-  query IndexPageQuery {
+  query FAQPageQuery {
     site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
       title
       description
-      keywords
+    }
+    faqText: sanityFaqText(_id: {eq: "faqText"}) {
+      pageText
     }
   }
 `
 
-const IndexPage = props => {
+const FAQPage = props => {
   const {data, errors} = props
 
   if (errors) {
@@ -27,15 +30,16 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site
+  const faqText = (data || {}).faqText.pageText
 
   return (
     <Layout>
       <SEO title={site.title} description={site.description} />
       <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
+        <ReactMarkdown children={faqText} />
       </Container>
     </Layout>
   )
 }
 
-export default IndexPage
+export default FAQPage
