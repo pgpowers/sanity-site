@@ -1,7 +1,10 @@
+import { FaPaintBrush } from "react-icons/fa";
+
 export default {
   name: 'portfolioItem',
   type: 'document',
   title: 'Portfolio Items',
+  icon: FaPaintBrush,
   fields: [
     {
       name: 'title',
@@ -11,7 +14,12 @@ export default {
     {
       name: 'image',
       type: 'image',
-      title: 'Portfolio Image',
+      title: 'Portfolio Image'
+    },
+    {
+      name: 'description',
+      type: 'markdown',
+      title: 'Description',
       description: 'Describe this portfolio item.'
     }
   ]

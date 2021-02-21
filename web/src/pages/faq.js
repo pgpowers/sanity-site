@@ -29,8 +29,8 @@ const FAQPage = props => {
     )
   }
 
-  const site = (data || {}).site
-  const faqText = (data || {}).faqText.pageText
+  const site = data?.site
+  const faqText = data?.faqText.pageText
 
   return (
     <Layout>

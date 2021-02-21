@@ -4,6 +4,8 @@ import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import PortfolioItem from '../components/portfolioItem';
+import styles from '../components/portfolioItem.module.css';
 
 export const query = graphql`
   query PortfolioPageQuery {
@@ -11,9 +13,29 @@ export const query = graphql`
       title
       description
       keywords
+    },
+    portfolioItems: allSanityPortfolioItem {
+      edges {
+        node {
+          _id
+          title
+          image {
+            asset {
+              url
+            }
+          }
+          description
+          }
+        }
+      }
     }
-  }
 `
+
+const PortfolioGrid = ({children}) => {
+  return <div className={styles.portfolioGrid}>
+    {children}
+  </div>;
+}
 
 const PortfolioPage = props => {
   const {data, errors} = props
@@ -26,13 +48,20 @@ const PortfolioPage = props => {
     )
   }
 
-  const site = (data || {}).site
+  const site = data?.site;
+  const portfolioItems = data?.portfolioItems?.edges;
+  console.log(portfolioItems)
 
   return (
     <Layout>
       <SEO title={site.title} description={site.description} />
       <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
+        <h1>Portfolio</h1>
+        <PortfolioGrid>
+          {portfolioItems.map(item => {
+            return <PortfolioItem _id={item.node._id} title={item.node.title} image={item.node.image} description={item.node.description} />
+          })}
+        </PortfolioGrid>
       </Container>
     </Layout>
   )

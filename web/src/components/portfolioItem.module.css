@@ -1,0 +1,29 @@
+@import '../styles/custom-media.css';
+@import '../styles/custom-properties.css';
+
+.portfolioGrid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.portfolioItem {
+    text-align: center;
+    position: relative;
+}
+
+.portfolioItem img {
+    height: auto;
+    font-size: 0;
+    max-width: 100%;
+}
+
+.portfolioItem p {
+    transform: rotate(-2deg) translateY(-10px);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    margin: 0;
+    font-size: 2rem;
+    font-size: clamp(12px, 5vw, 20px);
+}

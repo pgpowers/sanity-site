@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import siteSettings from './documents/siteSettings'
 import portfolioItem from './documents/portfolioItem'
 import faqText from './documents/faqText'
+import commissionText from './documents/commissionText'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -20,6 +21,7 @@ export default createSchema({
     // in the studio.
     portfolioItem,
     faqText,
+    commissionText,
     siteSettings
   ])
 })
